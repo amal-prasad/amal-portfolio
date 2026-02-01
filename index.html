@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Amal Prasad - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#2563EB", // A solid, professional blue
+                        "background-light": "#FAFAFA",
+                        "background-dark": "#111827",
+                        "surface-light": "#FFFFFF",
+                        "surface-dark": "#1F2937",
+                        "text-light": "#374151",
+                        "text-dark": "#D1D5DB",
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Playfair Display', 'serif'],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                    },
+                },
+            },
+        };
+    </script>
+    <script>
+        // Simple script to toggle dark mode
+        function toggleDarkMode() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+        }
+        // Function to copy text to clipboard
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                // Optional: You could show a toast here, but for minimalism we just copy
+                console.log('Copied to clipboard');
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+        // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark')
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+    </script>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-sans transition-colors duration-300">
+    <nav
+        class="fixed w-full z-50 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="font-display font-bold text-xl text-gray-900 dark:text-white tracking-tight">AP.</span>
+                </div>
+                <div class="hidden md:flex flex-1 justify-center items-center space-x-6 lg:space-x-8">
+                    <a class="text-sm font-medium text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-white transition-colors"
+                        href="#about">About</a>
+                    <a class="text-sm font-medium text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-white transition-colors"
+                        href="#experience">Experience</a>
+                    <a class="text-sm font-medium text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-white transition-colors"
+                        href="#projects">Projects</a>
+                    <a class="text-sm font-medium text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-white transition-colors"
+                        href="#skills">Skills</a>
+                    <div class="h-4 w-px bg-gray-300 dark:bg-gray-700 mx-2"></div>
+                    <div class="flex items-center space-x-1 group relative">
+                        <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary transition-colors"
+                            href="tel:+917999787808">+91-7999787808</a>
+                        <button class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors p-1"
+                            onclick="copyToClipboard('+917999787808')" title="Copy Phone Number">
+                            <span class="material-icons-outlined text-[16px]">content_copy</span>
+                        </button>
+                    </div>
+                    <div class="flex items-center space-x-1 group relative">
+                        <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary transition-colors"
+                            href="mailto:amalprasad1998@gmail.com">amalprasad1998@gmail.com</a>
+                        <button class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors p-1"
+                            onclick="copyToClipboard('amalprasad1998@gmail.com')" title="Copy Email">
+                            <span class="material-icons-outlined text-[16px]">content_copy</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button
+                        class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors focus:outline-none"
+                        onclick="toggleDarkMode()">
+                        <span class="material-icons-outlined text-gray-600 dark:text-gray-300">brightness_4</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <header class="relative pt-32 pb-20 sm:pt-40 sm:pb-24 overflow-hidden" id="about">
+        <div class="max-w-4xl mx-auto px-6 sm:px-10 lg:px-12 relative z-10 text-center">
+            <div
+                class="bg-blue-50/50 dark:bg-gray-900/50 backdrop-blur-xl border border-white/40 dark:border-white/10 rounded-3xl p-8 sm:p-12 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.4)] ring-1 ring-white/40 dark:ring-white/5">
+                <h1
+                    class="text-5xl sm:text-7xl font-display font-bold text-gray-900 dark:text-white mb-6 leading-tight drop-shadow-md">
+                    Amal Prasad
+                </h1>
+                <p
+                    class="mt-4 max-w-2xl mx-auto text-xl sm:text-2xl text-gray-600 dark:text-gray-300 font-light drop-shadow-sm">
+                    Bridging the gap between <span class="text-primary font-medium">DevOps</span> stability &amp; <span
+                        class="text-primary font-medium">AI</span> innovation.
+                </p>
+                <div class="mt-10 flex justify-center gap-4">
+                    <a class="px-8 py-3 rounded-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-all shadow-[0_10px_20px_rgba(0,0,0,0.19),0_6px_6px_rgba(0,0,0,0.23)] hover:shadow-[0_14px_28px_rgba(0,0,0,0.25),0_10px_10px_rgba(0,0,0,0.22)] transform hover:-translate-y-1"
+                        href="#projects">
+                        View Projects
+                    </a>
+                    <a class="px-8 py-3 rounded-full border border-gray-300 dark:border-gray-500 text-gray-800 dark:text-gray-200 bg-white/50 dark:bg-black/20 font-medium hover:bg-white dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white transition-all flex items-center gap-2 shadow-[0_4px_6px_rgba(0,0,0,0.1)] hover:shadow-[0_10px_15px_rgba(0,0,0,0.1)] transform hover:-translate-y-1"
+                        href="https://github.com" target="_blank">
+                        <span class="material-icons-outlined text-lg">code</span> GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div
+            class="absolute top-0 left-1/2 w-full -translate-x-1/2 h-full z-0 pointer-events-none opacity-40 dark:opacity-20">
+            <div
+                class="absolute top-20 left-20 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl animate-blob">
+            </div>
+            <div
+                class="absolute top-20 right-20 w-72 h-72 bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000">
+            </div>
+            <div
+                class="absolute -bottom-8 left-1/2 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000">
+            </div>
+        </div>
+    </header>
+    <section class="py-20 bg-surface-light dark:bg-surface-dark" id="experience">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-display font-bold text-gray-900 dark:text-white mb-12 text-center">Work Experience
+            </h2>
+            <div class="relative border-l border-gray-200 dark:border-gray-700 ml-4 md:ml-0 space-y-12">
+                <div class="relative md:pl-8">
+                    <span
+                        class="absolute -left-1.5 top-2 h-3 w-3 rounded-full bg-primary ring-4 ring-white dark:ring-surface-dark"></span>
+                    <div
+                        class="bg-white dark:bg-background-dark p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition-shadow">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-white">Data Scientist</h3>
+                                <p class="text-primary font-medium">AGP Pvt. Ltd.</p>
+                            </div>
+                            <span class="text-sm text-gray-500 dark:text-gray-400 mt-1 md:mt-0 font-mono">Sep 2023 –
+                                Present</span>
+                        </div>
+                        <ul
+                            class="space-y-2 text-gray-600 dark:text-gray-300 list-disc list-inside text-sm leading-relaxed">
+                            <li>Conducted data regression analyses on company stock prices and industry trends,
+                                achieving a 15% more accurate prediction of performance.</li>
+                            <li>Updated company data warehousing techniques (data recall/segmentation), increasing
+                                usability for non-technical staff by 20%.</li>
+                            <li>Modernized data streamlining processes, resulting in a 47% redundancy reduction.</li>
+                            <li>Collaborated with management to develop digital marketing plans focusing on acquisition
+                                and conversion.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="relative md:pl-8">
+                    <span
+                        class="absolute -left-1.5 top-2 h-3 w-3 rounded-full bg-gray-300 dark:bg-gray-600 ring-4 ring-white dark:ring-surface-dark"></span>
+                    <div
+                        class="bg-white dark:bg-background-dark p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition-shadow">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-white">Project Engineer (DevOps)
+                                </h3>
+                                <p class="text-primary font-medium">Capgemini, Pune</p>
+                            </div>
+                            <span class="text-sm text-gray-500 dark:text-gray-400 mt-1 md:mt-0 font-mono">Aug 2021 – Sep
+                                2023</span>
+                        </div>
+                        <ul
+                            class="space-y-2 text-gray-600 dark:text-gray-300 list-disc list-inside text-sm leading-relaxed">
+                            <li>Architected deployments on AWS, configuring cloud resources to improve scalability and
+                                reliability by 20%.</li>
+                            <li>Engineered 15+ containerized applications using AWS, Kubernetes, Docker, and GCR,
+                                reducing deployment time by 15%.</li>
+                            <li>Streamlined CI/CD pipelines by integrating Git, JIRA, and Confluence; conducted 100+
+                                Trivy scans for security.</li>
+                            <li>Partnered with senior engineers to diagnose and resolve incidents, cutting mean time to
+                                resolution by 20%.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-20 bg-background-light dark:bg-background-dark" id="projects">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-display font-bold text-gray-900 dark:text-white mb-4 text-center">Featured Projects
+            </h2>
+            <p class="text-center text-gray-500 dark:text-gray-400 mb-12 max-w-2xl mx-auto">A selection of technical
+                projects showcasing capabilities in AI, Machine Learning, and System Architecture.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                <div
+                    class="group bg-white dark:bg-surface-dark rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 flex flex-col relative">
+                    <div
+                        class="h-48 bg-gradient-to-r from-blue-500 to-cyan-400 flex items-center justify-center relative overflow-hidden">
+                        <a class="absolute top-4 right-4 z-10 bg-white/20 hover:bg-white/40 backdrop-blur-sm p-2 rounded-full text-white transition-colors"
+                            href="https://github.com/amal-prasad/RBIChatbot" target="_blank"
+                            title="View Repository (New Tab)">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z">
+                                </path>
+                            </svg>
+                        </a>
+                        <span
+                            class="material-icons-outlined text-white text-6xl opacity-80 group-hover:scale-110 transition-transform duration-500">smart_toy</span>
+                        <div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors"></div>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">RBI Chatbot (RAG)</h3>
+                            <span
+                                class="text-xs font-mono bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100 px-2 py-1 rounded">Aug
+                                '25</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-6 flex-1">
+                            Built a RAG-based chatbot processing 108 document chunks from RBI guidelines. Streamlined
+                            semantic search with 1000-char chunking across 16k+ words. Integrated OpenAI GPT-3.5 &amp;
+                            Ollama with automated citation tracking.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span
+                                class="text-xs font-medium text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-600 px-2 py-1 rounded">Python</span>
+                            <span
+                                class="text-xs font-medium text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-600 px-2 py-1 rounded">LangChain</span>
+                            <span
+                                class="text-xs font-medium text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-600 px-2 py-1 rounded">ChromaDB</span>
+                        </div>
+                        <a class="inline-flex items-center text-primary font-medium hover:underline mt-auto gap-2 group-hover:text-blue-600"
+                            href="https://github.com/amal-prasad/RBIChatbot" target="_blank">
+                            <span>View Repository (New Tab)</span>
+                            <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z">
+                                </path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div
+                    class="group bg-white dark:bg-surface-dark rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 flex flex-col relative">
+                    <div
+                        class="h-48 bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center relative overflow-hidden">
+                        <a class="absolute top-4 right-4 z-10 bg-white/20 hover:bg-white/40 backdrop-blur-sm p-2 rounded-full text-white transition-colors"
+                            href="https://github.com/amal-prasad/Supermarket_Basket_Analysis" target="_blank"
+                            title="View Repository (New Tab)">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z">
+                                </path>
+                            </svg>
+                        </a>
+                        <span
+                            class="material-icons-outlined text-white text-6xl opacity-80 group-hover:scale-110 transition-transform duration-500">shopping_cart</span>
+                        <div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors"></div>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Supermarket Basket Analysis</h3>
+                            <span
+                                class="text-xs font-mono bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-100 px-2 py-1 rounded">Jul
+                                '25</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-6 flex-1">
+                            Analyzed 1M customer transactions using unsupervised K-Means clustering to segment 101k
+                            customers into 3 actionable groups (99.1% stability). Built a scoring model projecting a
+                            12-20% revenue uplift.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span
+                                class="text-xs font-medium text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-600 px-2 py-1 rounded">K-Means</span>
+                            <span
+                                class="text-xs font-medium text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-600 px-2 py-1 rounded">Clustering</span>
+                            <span
+                                class="text-xs font-medium text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-600 px-2 py-1 rounded">Feature
+                                Eng</span>
+                        </div>
+                        <a class="inline-flex items-center text-primary font-medium hover:underline mt-auto gap-2 group-hover:text-purple-600"
+                            href="https://github.com/amal-prasad/Supermarket_Basket_Analysis" target="_blank">
+                            <span>View Repository (New Tab)</span>
+                            <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z">
+                                </path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div
+                    class="group bg-white dark:bg-surface-dark rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 flex flex-col relative">
+                    <div
+                        class="h-48 bg-gradient-to-r from-emerald-500 to-teal-400 flex items-center justify-center relative overflow-hidden">
+                        <a class="absolute top-4 right-4 z-10 bg-white/20 hover:bg-white/40 backdrop-blur-sm p-2 rounded-full text-white transition-colors"
+                            href="https://github.com/amal-prasad/Apple_stock_predictor" target="_blank"
+                            title="View Repository (New Tab)">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z">
+                                </path>
+                            </svg>
+                        </a>
+                        <span
+                            class="material-icons-outlined text-white text-6xl opacity-80 group-hover:scale-110 transition-transform duration-500">trending_up</span>
+                        <div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors"></div>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Trading Engine</h3>
+                            <span
+                                class="text-xs font-mono bg-teal-100 dark:bg-teal-900 text-teal-800 dark:text-teal-100 px-2 py-1 rounded">May
+                                '25</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-6 flex-1">
+                            Devised a trading engine for data-driven buy/sell decisions. Trained SimpleRNN, LSTM, and
+                            GRU models on AAPL dataset. Integrated news sentiment analysis using APIs and visualized
+                            metrics with ModelCheckpoint.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span
+                                class="text-xs font-medium text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-600 px-2 py-1 rounded">LSTM/GRU</span>
+                            <span
+                                class="text-xs font-medium text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-600 px-2 py-1 rounded">Sentiment
+                                Analysis</span>
+                            <span
+                                class="text-xs font-medium text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-600 px-2 py-1 rounded">Finance</span>
+                        </div>
+                        <a class="inline-flex items-center text-primary font-medium hover:underline mt-auto gap-2 group-hover:text-teal-600"
+                            href="https://github.com/amal-prasad/Apple_stock_predictor" target="_blank">
+                            <span>View Repository (New Tab)</span>
+                            <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z">
+                                </path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div
+                    class="group bg-white dark:bg-surface-dark rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 flex flex-col relative">
+                    <div
+                        class="h-48 bg-gradient-to-r from-orange-400 to-red-500 flex items-center justify-center relative overflow-hidden">
+                        <a class="absolute top-4 right-4 z-10 bg-white/20 hover:bg-white/40 backdrop-blur-sm p-2 rounded-full text-white transition-colors"
+                            href="https://github.com/amal-prasad/PowerPulse" target="_blank"
+                            title="View Repository (New Tab)">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z">
+                                </path>
+                            </svg>
+                        </a>
+                        <span
+                            class="material-icons-outlined text-white text-6xl opacity-80 group-hover:scale-110 transition-transform duration-500">bolt</span>
+                        <div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors"></div>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Energy Consumption Reduction
+                            </h3>
+                            <span
+                                class="text-xs font-mono bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-100 px-2 py-1 rounded">Jan
+                                '25</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-6 flex-1">
+                            Developed ML models (XGBoost, Linear Regression) to predict household energy usage in
+                            France, achieving R² scores of 0.85+. Implemented load balancing reducing peak demand by
+                            22.86%. Delivered €277 annual savings per household.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span
+                                class="text-xs font-medium text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-600 px-2 py-1 rounded">XGBoost</span>
+                            <span
+                                class="text-xs font-medium text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-600 px-2 py-1 rounded">Regression</span>
+                            <span
+                                class="text-xs font-medium text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-600 px-2 py-1 rounded">Sustainability</span>
+                        </div>
+                        <a class="inline-flex items-center text-primary font-medium hover:underline mt-auto gap-2 group-hover:text-orange-600"
+                            href="https://github.com/amal-prasad/PowerPulse" target="_blank">
+                            <span>View Repository (New Tab)</span>
+                            <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z">
+                                </path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-20 bg-surface-light dark:bg-surface-dark" id="skills">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-display font-bold text-gray-900 dark:text-white mb-12 text-center">Technical
+                Proficiency</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div
+                    class="bg-white dark:bg-background-dark p-8 rounded-xl border border-gray-200 dark:border-gray-700">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="material-icons-outlined text-primary text-2xl">code</span>
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white">Languages &amp; Frameworks</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded text-sm">Python</span>
+                        <span
+                            class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded text-sm">JAVA</span>
+                        <span
+                            class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded text-sm">Pandas</span>
+                        <span
+                            class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded text-sm">Numpy</span>
+                        <span
+                            class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded text-sm">Scikit-Learn</span>
+                        <span
+                            class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded text-sm">Matplotlib</span>
+                    </div>
+                </div>
+                <div
+                    class="bg-white dark:bg-background-dark p-8 rounded-xl border border-gray-200 dark:border-gray-700">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="material-icons-outlined text-primary text-2xl">psychology</span>
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white">AI &amp; Machine Learning</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded text-sm">TensorFlow</span>
+                        <span
+                            class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded text-sm">PyTorch</span>
+                        <span
+                            class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded text-sm">GANs</span>
+                        <span
+                            class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded text-sm">Transformers</span>
+                        <span
+                            class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded text-sm">LLMs</span>
+                        <span
+                            class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded text-sm">OpenAI
+                            GPT</span>
+                    </div>
+                </div>
+                <div
+                    class="bg-white dark:bg-background-dark p-8 rounded-xl border border-gray-200 dark:border-gray-700">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="material-icons-outlined text-primary text-2xl">cloud_sync</span>
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white">Cloud &amp; DevOps</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded text-sm">AWS</span>
+                        <span
+                            class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded text-sm">Docker</span>
+                        <span
+                            class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded text-sm">Kubernetes</span>
+                        <span
+                            class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded text-sm">Ansible</span>
+                        <span
+                            class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded text-sm">Terraform</span>
+                        <span
+                            class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded text-sm">CI/CD</span>
+                        <span
+                            class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded text-sm">MySQL</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-20 bg-background-light dark:bg-background-dark border-t border-gray-200 dark:border-gray-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-2xl font-display font-bold text-gray-900 dark:text-white mb-8">Notable Achievements</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="p-6 bg-white dark:bg-surface-dark rounded-lg shadow-sm">
+                    <span class="material-icons-outlined text-yellow-500 text-4xl mb-4">emoji_events</span>
+                    <h4 class="font-bold text-lg dark:text-white">NTSE Rank Holder</h4>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">Secured State Rank 8 (Score 87/90) and
+                        State Rank 2 for MAT paper.</p>
+                </div>
+                <div class="p-6 bg-white dark:bg-surface-dark rounded-lg shadow-sm">
+                    <span
+                        class="material-icons-outlined text-gray-400 dark:text-gray-500 text-4xl mb-4">camera_alt</span>
+                    <h4 class="font-bold text-lg dark:text-white">Photography Awards</h4>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">Secured 2 consecutive Silver Medals in
+                        exhibitions organized by Manikamika Art Gallery.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="bg-white dark:bg-surface-dark py-12 border-t border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0">
+                <span class="font-display font-bold text-2xl text-gray-900 dark:text-white">AP.</span>
+                <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">Building robust systems and intelligent models.
+                </p>
+            </div>
+            <div class="flex flex-col items-center md:items-end">
+                <div class="flex space-x-6 mb-4">
+                    <a class="text-gray-400 hover:text-primary transition-colors" href="https://linkedin.com">
+                        <span class="sr-only">LinkedIn</span>
+                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z">
+                            </path>
+                        </svg>
+                    </a>
+                    <a class="text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                        href="https://github.com">
+                        <span class="sr-only">GitHub</span>
+                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z">
+                            </path>
+                        </svg>
+                    </a>
+                    <a class="text-gray-400 hover:text-primary transition-colors"
+                        href="mailto:amalprasad1998@gmail.com">
+                        <span class="material-icons-outlined">email</span>
+                    </a>
+                </div>
+                <p class="text-gray-400 text-xs">© 2026 Amal Prasad. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <style>
+        @keyframes blob {
+            0% {
+                transform: translate(0px, 0px) scale(1);
+            }
+
+            33% {
+                transform: translate(30px, -50px) scale(1.1);
+            }
+
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+
+            100% {
+                transform: translate(0px, 0px) scale(1);
+            }
+        }
+
+        .animate-blob {
+            animation: blob 7s infinite;
+        }
+
+        .animation-delay-2000 {
+            animation-delay: 2s;
+        }
+
+        .animation-delay-4000 {
+            animation-delay: 4s;
+        }
+    </style>
+</body>
+
+</html>
